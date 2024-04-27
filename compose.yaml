@@ -1,0 +1,19 @@
+services:
+  bytebase:
+    image: bytebase/bytebase:2.16.0
+    container_name: bytebase
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./bytebase/data:/var/opt/bytebase
+  postgres:
+    image: postgres:15
+    container_name: postgres
+    environment:
+      POSTGRES_DB: test
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: password
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
