@@ -71,3 +71,17 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: test
+  gitlab:
+    image: zengxs/gitlab:16-ee
+    container_name: gitlab
+    # environment:
+    #   GITLAB_OMNIBUS_CONFIG: |
+    #     external_url 'http://localhost:8888'
+    ports:
+      - "8443:443"
+      - "8888:80"
+      - "2222:22"
+    volumes:
+      - ./gitlab/config:/etc/gitlab
+      - ./gitlab/logs:/var/log/gitlab
+      - ./gitlab/data:/var/opt/gitlab
